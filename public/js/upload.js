@@ -28,6 +28,10 @@ function writeFile(evt) {
    var fileName = document.getElementById("fileName").value;
    var content = document.getElementById("content");
    var files = content.files
+   if (!files.length) {
+       alert("ファイルを選択して下さい。");
+       return
+   }
    loadFile(fileName, files[0], save);
 }
 
@@ -36,6 +40,7 @@ function loadFile(fileName, file, callback) {
         console.log("fileName: " + fileName)
         file.name = fileName;
     }
+    console.log("file: " + file)
     var reader = new FileReader();
     reader.onload = (function(theFile) {
         return function(e) {
